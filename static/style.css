@@ -1,8 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 body {
     font-family: 'Oswald', sans-serif;
     margin: 0;
     padding: 0;
+    background-image: url("travel.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; 
+    margin: 0;
 }
 
 .header {
@@ -14,6 +19,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100px;
 }
 
 .nav a {
@@ -45,4 +51,88 @@ button {
 
 button:hover {
     background-color: #0a4f0d;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+.description {
+    background-color: rgba(255, 255, 255, 0.32);
+    padding: 20px;
+    width: 80%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+    border-radius: 10px;
+  
+}
+.description h2 {
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: #0a4f0d;
+}
+.description p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: white;
+    text-shadow: 1px 1px 2px #0a4f0d;
+}
+.description button {
+    margin-top: 20px;
+    background-color: #0a4f0d;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
+.social-media {
+    position: fixed;
+    margin-top: 5%;
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .logo {
+        margin-bottom: 10px;
+    }
+    .nav {
+        margin-top: 10px;
+    }
+    .nav a {
+        display: block;
+        margin: 5px 0;
+    }
+}
+@media (max-width: 400px) {
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .description {
+        width: 100%;
+        margin: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .social-media {
+        top: 10px;
+        right: 10px;
+    }
 }
