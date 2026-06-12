@@ -19,7 +19,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100px;
+    height: 50px;
 }
 
 .nav a {
@@ -58,14 +58,13 @@ button:hover {
     align-items: center;
 }
 .description {
-    background-color: rgba(255, 255, 255, 0.32);
+    background-color: rgba(255, 255, 255, 0.225);
     padding: 20px;
-    width: 80%;
-    max-width: 600px;
+    width: 70%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 10%;
-    border-radius: 10px;
+    margin-top: 5%;
+    border-radius: 5px;
   
 }
 .description h2 {
@@ -97,6 +96,25 @@ button:hover {
     flex-direction: column;
     align-items: center;
     gap: 10px;
+}
+.team{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+.team-item{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.23);
+}
+.team-item p{
+    margin: 10px 0;
+    font-size: 0.7em;
+    line-height: 0.2em;
 }
 @media (max-width: 600px) {
     .header {
@@ -134,5 +152,16 @@ button:hover {
     .social-media {
         top: 10px;
         right: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .team {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-item {
+        width: 80%;
+        margin-bottom: 20px;
     }
 }
