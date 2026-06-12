@@ -94,6 +94,42 @@ button:hover {
     color: white;
     cursor: pointer;
 }
+.description h1 {
+    margin-top: 0;
+    font-size: 36px;
+    color: #0a4f0d;
+}
+.contact-section{
+    display: flex;
+    flex-direction: row;
+    gap:10%;
+    padding: 20px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2%;
+    border-radius: 5px;
+}
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: transparent;
+    color: white;
+}
+.contact-form input {
+    border: 0.5px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    width: 70%;
+    margin-left: 10px;
+}
+.contact-form textarea{
+    border: 0.5px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    width: 100%;
+}
 .social-media {
     position: fixed;
     margin-top: 5%;
