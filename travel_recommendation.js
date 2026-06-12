@@ -1,5 +1,5 @@
 const destinationsContainer = document.getElementById("destinations");
-
+const homeDescription = document.getElementById("home-description");
 async function search() {
     try {
         const searchInput = document.getElementById("search-word").value.trim();
@@ -25,7 +25,7 @@ async function search() {
 function findDestination(data, searchWord) {
     const target = searchWord.toLowerCase().trim();
     const results = [];
-
+    if(searchWord.length == 0) return results
     data.countries.forEach(country => {
         if (country.name.toLowerCase() === target) {
             results.push(...country.cities);
@@ -61,10 +61,10 @@ function findDestination(data, searchWord) {
     return results;
 }
 function renderDestinations(destinations) {
-    destinationsContainer.innerHTML = `
-        <h1>Search Results</h1>
-    `;
+    
+    homeDescription.style.display = 'none'
 
+    document.getElementById("search-result").style.display ='';
     if (destinations.length === 0) {
         destinationsContainer.innerHTML += `
             <p>No destinations found.</p>
@@ -75,14 +75,14 @@ function renderDestinations(destinations) {
     destinations.forEach(destination => {
         const destinationElement = document.createElement("div");
 
-        destinationElement.classList.add("destination-items");
+        destinationElement.classList.add("destinations-item");
 
         destinationElement.innerHTML = `
             <img
                 src="${destination.imageUrl}"
                 alt="${destination.name}"
-                width="250"
-                height="150"
+                width="85%"
+                
             />
             <h2>${destination.name}</h2>
             <p>${destination.description}</p>
@@ -90,4 +90,11 @@ function renderDestinations(destinations) {
 
         destinationsContainer.appendChild(destinationElement);
     });
+    
+}
+
+function clear() {
+    document.getElementById("search-word").value = "";
+    destinationsContainer.style.display = 'none';
+    homeDescription.style.display = ''
 }

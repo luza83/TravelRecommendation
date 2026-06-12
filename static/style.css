@@ -171,6 +171,39 @@ button:hover {
     font-size: 0.7em;
     line-height: 0.2em;
 }
+.destinations-container{
+    display: flex;
+    justify-content: space-around;;
+    margin: 5%;
+    flex-direction: row;
+    padding: 10px;
+    
+}
+.destinations-item{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    width: 35%;
+    background-color: rgba(255, 255, 255, 0.225);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.23);
+}
+
+.destinations-item  h2{
+    color: #0a4f0d;
+    text-shadow: 1px 1px 2px #4caf4fa2;
+}
+.destinations-item  p{
+    font-size: 18px;
+    line-height: 1.5;
+    color: white;
+    text-shadow: 1px 1px 2px #0a4f0d;
+}
+#search-result h1{
+   color: white;
+   text-align: center;
+}
 @media (max-width: 600px) {
     .header {
         flex-direction: column;
