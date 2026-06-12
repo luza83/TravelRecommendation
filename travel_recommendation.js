@@ -1,21 +1,21 @@
 const destinationsContainer = document.getElementById("destinations");
-const searchInput = document.getElementById("destination");
+const searchInput = document.getElementById("search-word").value;
+
 async function search() {
   try {
-    const response = await fetch("travel_recommendation.json");
+    const response = await fetch("travel_recommendation_api.json");
 
     if (!response.ok) {
       throw new Error("Failed to load JSON file");
     }
     
     const destinations = await response.json();
-    console.log(destinations)
     
     let filteredDestinations = findDestination(destinations, searchInput)
     renderDestinations(filteredDestinations);
   } catch (error) {
-    articlesContainer.innerHTML = `
-      <p style="color:red;">
+    destinationsContainer.innerHTML = `
+      <p style="color:red; ">
         Error loading articles: ${error.message}
       </p>
     `;
@@ -24,26 +24,24 @@ async function search() {
 function findDestination(data, searchWord){
     let target = searchWord.toLowerCase().trim();
     let result = [];
-    data.Countries.forEach(country => {
-        if(country.name.toLowerCase().includes(target)){
+    data.countries.forEach(country => {
+        console.log(country.name)
+        if(target.length > 0 && country.name.toLowerCase().includes(target)){
             result.push(country.cities)
         }
     } )
-    data.temples.forEach(temple => {
-        if(temple.toLowerCase().trim().includes(target)){
-            result.push(data.temples)
-        }
-    })
-    data.beaches.forEach(beach => {
-        if(beach.toLowerCase().trim().includes(target)){
-            result.push(data.beaches)
-        }
-    })
+    if(target.length > 0 && target.includes("temple")){
+        result.push(data.temples)
+    }
+    if(target.length > 0 && target.includes("beach")){
+        result.push(data.beaches)
+    }
+    return result
 }
 
 function renderDestinations(destinations) {
     destinationsContainer.innerHTML = "";
-    if(destinations.length == 0){
+    if(!destinations){
         destinationElement.innerHTML = `
         <h1>
             Search results
@@ -55,6 +53,7 @@ function renderDestinations(destinations) {
     `;
     }
     destinations.forEach(d => {
+    console.log(d)
     const destinationElement = document.createElement("div");
 
     destinationElement.innerHTML = `
@@ -76,4 +75,3 @@ function renderDestinations(destinations) {
     });
     }
 
-search();
