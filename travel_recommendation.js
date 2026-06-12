@@ -1,77 +1,93 @@
 const destinationsContainer = document.getElementById("destinations");
-const searchInput = document.getElementById("search-word").value;
 
 async function search() {
-  try {
-    const response = await fetch("travel_recommendation_api.json");
+    try {
+        const searchInput = document.getElementById("search-word").value.trim();
 
-    if (!response.ok) {
-      throw new Error("Failed to load JSON file");
-    }
-    
-    const destinations = await response.json();
-    
-    let filteredDestinations = findDestination(destinations, searchInput)
-    renderDestinations(filteredDestinations);
-  } catch (error) {
-    destinationsContainer.innerHTML = `
-      <p style="color:red; ">
-        Error loading articles: ${error.message}
-      </p>
-    `;
-  }
-}
-function findDestination(data, searchWord){
-    let target = searchWord.toLowerCase().trim();
-    let result = [];
-    data.countries.forEach(country => {
-        console.log(country.name)
-        if(target.length > 0 && country.name.toLowerCase().includes(target)){
-            result.push(country.cities)
+        const response = await fetch("travel_recommendation_api.json");
+
+        if (!response.ok) {
+            throw new Error("Failed to load JSON file");
         }
-    } )
-    if(target.length > 0 && target.includes("temple")){
-        result.push(data.temples)
+        const destinations = await response.json();
+        const filteredDestinations = findDestination(destinations,searchInput);
+        renderDestinations(filteredDestinations);
+
+    } catch (error) {
+        destinationsContainer.innerHTML = `
+            <p style="color:red;">
+                ${error.message}
+            </p>
+        `;
     }
-    if(target.length > 0 && target.includes("beach")){
-        result.push(data.beaches)
-    }
-    return result
 }
 
-function renderDestinations(destinations) {
-    destinationsContainer.innerHTML = "";
-    if(!destinations){
-        destinationElement.innerHTML = `
-        <h1>
-            Search results
-        </h1>
-        <div class='destination-items'>
-          <h2>No destinations found</h2>
-        </div>
+function findDestination(data, searchWord) {
+    const target = searchWord.toLowerCase().trim();
+    const results = [];
 
-    `;
-    }
-    destinations.forEach(d => {
-    console.log(d)
-    const destinationElement = document.createElement("div");
-
-    destinationElement.innerHTML = `
-        <h1>
-            Search results
-        </h1>
-        <div class='destination-items'>
-            <img src='${d.image}' alt='${d.name}' width='250px' height='150px'/>
-            <h2>${d.name}</h2>
-            <p>
-            <strong>Description:</strong>
-            ${d.description}
-            </p>
-        </div>
-
-    `;
-
-    destinationsContainer.appendChild(destinationElement);
+    data.countries.forEach(country => {
+        if (country.name.toLowerCase() === target) {
+            results.push(...country.cities);
+            return;
+        }
+        country.cities.forEach(city => {
+            if (city.name.toLowerCase().includes(target)) {
+                results.push(city);
+            }
+        });
     });
+    data.temples.forEach(temple => {
+        if (temple.name.toLowerCase().includes(target)) {
+            results.push(temple);
+            return;
+        }
+    });
+    data.beaches.forEach(beach => {
+        if (beach.name.toLowerCase().includes(target)) {
+            results.push(beach);
+            return;
+        }
+    });
+
+    if (target.includes("temple")) {
+        results.push(...data.temples);
     }
 
+    if (target.includes("beach")) {
+        results.push(...data.beaches);
+    }
+
+    return results;
+}
+function renderDestinations(destinations) {
+    destinationsContainer.innerHTML = `
+        <h1>Search Results</h1>
+    `;
+
+    if (destinations.length === 0) {
+        destinationsContainer.innerHTML += `
+            <p>No destinations found.</p>
+        `;
+        return;
+    }
+
+    destinations.forEach(destination => {
+        const destinationElement = document.createElement("div");
+
+        destinationElement.classList.add("destination-items");
+
+        destinationElement.innerHTML = `
+            <img
+                src="${destination.imageUrl}"
+                alt="${destination.name}"
+                width="250"
+                height="150"
+            />
+            <h2>${destination.name}</h2>
+            <p>${destination.description}</p>
+        `;
+
+        destinationsContainer.appendChild(destinationElement);
+    });
+}
