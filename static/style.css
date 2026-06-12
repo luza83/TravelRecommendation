@@ -107,7 +107,7 @@ button:hover {
     width: 70%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 2%;
+    margin-top: -30px;
     border-radius: 5px;
 }
 .contact-form {
@@ -118,17 +118,30 @@ button:hover {
     color: white;
 }
 .contact-form input {
+    width: 70%;
+    margin-left: 10px;
+    padding: 10px;
     border: 0.5px solid white;
     border-radius: 5px;
     background-color: transparent;
-    width: 70%;
-    margin-left: 10px;
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+    appearance: none;
+    -webkit-appearance: none;
 }
 .contact-form textarea{
     border: 0.5px solid white;
     border-radius: 5px;
     background-color: transparent;
+    margin-top: 5px;
     width: 100%;
+    height: 150px;
+    overflow: scroll;
 }
 .social-media {
     position: fixed;
