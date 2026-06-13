@@ -145,8 +145,8 @@ button:hover {
 }
 .social-media {
     position: fixed;
-    margin-top: 5%;
-    right: 5%;
+    margin-top: 3%;
+    right: 1.2%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,19 +173,23 @@ button:hover {
 }
 .destinations-container{
     display: flex;
-    justify-content: space-around;;
-    margin: 5%;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    margin: 4% 2%;
     padding: 10px;
-    
 }
 .destinations-item{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 15px;
     border-radius: 10px;
-    width: 35%;
+    flex: 1 1 280px;
+    max-width: 32%;
+    min-width: 240px;
     background-color: rgba(255, 255, 255, 0.225);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.23);
 }
@@ -200,17 +204,40 @@ button:hover {
     color: white;
     text-shadow: 1px 1px 2px #0a4f0d;
 }
-#search-result h1{
-   color: white;
-   text-align: center;
+
+#search-result {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 1rem 0;
 }
+
+#search-result h1 {
+    color: white;
+}
+
 @media (max-width: 600px) {
     .header {
         flex-direction: column;
+        align-items: stretch;
         text-align: center;
+        height: auto;
+        gap: 10px;
     }
-    .logo {
-        margin-bottom: 10px;
+    .header > div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    input[type="text"] {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 0;
+    }
+    button {
+        width: auto;
     }
     .nav {
         margin-top: 10px;
@@ -219,29 +246,47 @@ button:hover {
         display: block;
         margin: 5px 0;
     }
-}
-@media (max-width: 400px) {
-    input[type="text"] {
-        width: 100%;
-        margin-bottom: 10px;
+    .description {
+        width: 90%;
+        margin: 20px auto;
+        padding: 20px;
     }
+    .destinations-container {
+        flex-direction: column;
+        align-items: center;
+        margin: 10%;
+    }
+    .destinations-item {
+        width: 100%;
+        max-width: 520px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 450px) {
+    .header > div {
+        width: 100%;
+    }
+    input[type="text"],
     button {
         width: 100%;
-        margin-bottom: 10px;
+        max-width: none;
     }
-}
-@media (max-width: 400px) {
     .description {
         width: 100%;
-        margin: 10px;
+        margin: 10px 0;
+        padding: 15px;
     }
-}
-@media (max-width: 400px) {
+    .destinations-container {
+        margin: 5% 2%;
+    }
     .social-media {
         top: 10px;
         right: 10px;
+        margin-top: 0;
     }
 }
+
 @media (max-width: 400px) {
     .team {
         flex-direction: column;

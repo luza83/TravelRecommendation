@@ -1,5 +1,6 @@
 const destinationsContainer = document.getElementById("destinations");
 const homeDescription = document.getElementById("home-description");
+let results = [];
 async function search() {
     try {
         const searchInput = document.getElementById("search-word").value.trim();
@@ -24,7 +25,7 @@ async function search() {
 
 function findDestination(data, searchWord) {
     const target = searchWord.toLowerCase().trim();
-    const results = [];
+    results = [];
     if(searchWord.length == 0) return results
     data.countries.forEach(country => {
         if (country.name.toLowerCase() === target) {
@@ -63,7 +64,7 @@ function findDestination(data, searchWord) {
 function renderDestinations(destinations) {
     
     homeDescription.style.display = 'none'
-
+    destinationsContainer.innerHTML = ""
     document.getElementById("search-result").style.display ='';
     if (destinations.length === 0) {
         destinationsContainer.innerHTML += `
@@ -92,9 +93,11 @@ function renderDestinations(destinations) {
     });
     
 }
-
-function clear() {
+function clearResults() {
+    homeDescription.style.display = "";
+    document.getElementById("search-result").style.display = "none";
+    document.getElementById("search-result").value = "none";
     document.getElementById("search-word").value = "";
-    destinationsContainer.style.display = 'none';
-    homeDescription.style.display = ''
+    destinationsContainer.innerHTML = "";
 }
+  
